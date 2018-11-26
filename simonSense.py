@@ -108,11 +108,12 @@ while True:
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
 	gyro_data = gyroSensor.get_gyro_data()
-    if(distanceSensor < 100) :
-       print("distance < 100")
-       ledAndSound(0)
-       sleep(1)
-       checkUserInput(0)
+    if(distanceSensor < 100):
+    	print("distance < 100")
+    	ledAndSound(0)
+    	sleep(1)
+    	checkUserInput(0)
+
     #elif(potentiometerValue )
 
 
