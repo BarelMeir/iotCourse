@@ -26,10 +26,6 @@ gyroSensor = mpu6050(0x68)
 #game output setup
 gpioSound = 5
 Led_Array = [4,17,27,22] #red, yellow, green, blue
-potentiometerValue = mcp.read_adc(0)
-fireSensorValue = mcp.read_adc(1) 
-distanceSensor = mcp.read_adc(2)
-
 mapping = {0:(4,440), 1:(17,523),2:(27,659),3:(22,784)}
 
 #sound setup
@@ -44,8 +40,8 @@ for index in range(len(Led_Array)):
     GPIO.setup(Led_Array[index], GPIO.OUT)
 
 #------------ button Callback
-def button0_callBack(channel):
-	print("Pushed 0")
+def distanceSensorEvent():
+	print("distance < 100")
 	ledAndSound(0)
 	sleep(1)
 	checkUserInput(0)
@@ -132,21 +128,33 @@ def showList():
 print('| {0:>4} | {1:>4} | {2:>4} |'.format(*range(3)))
 print('-' * 57)
 
+#Main Loop
 while True:
-	# Read all the ADC channel values in a list.
-    values = [0]*8
-    for i in range(8):
-        # The read_adc function will get the value of the specified channel (0-7).
-        values[i] = mcp.read_adc(i)
-    # Print the ADC values.
-    #print('| {0:>4} | {1:>4} | {2:>4}'.format(*values))
-
-    accel_data = gyroSensor.get_accel_data()
+	potentiometerValue = mcp.read_adc(0)
+	fireSensorValue = mcp.read_adc(1) 
+	distanceSensor = mcp.read_adc(2)
+	accel_data = gyroSensor.get_accel_data()
     gyro_data = gyroSensor.get_gyro_data()
+
+    if(distanceSensor < 100):
+    	distanceSensorEvent()
+    
+
+
+
+	# # Read all the ADC channel values in a list.
+ #    values = [0]*8
+ #    for i in range(8):
+ #        # The read_adc function will get the value of the specified channel (0-7).
+ #        values[i] = mcp.read_adc(i)
+ #    # Print the ADC values.
+ #    #print('| {0:>4} | {1:>4} | {2:>4}'.format(*values))
+
+    
     #print ("accel_Data ", accel_data)
     #print ("gyro_data", gyro_data)
 
-    print("%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f" % (accel_data['x'], accel_data['x'], accel_data['y'], gyro_data['x'], gyro_data['y'], gyro_data['z']))
+    # print("%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f" % (accel_data['x'], accel_data['x'], accel_data['y'], gyro_data['x'], gyro_data['y'], gyro_data['z']))
 
 
     # sleeps for one second
