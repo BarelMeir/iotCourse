@@ -101,13 +101,14 @@ def showList():
 #
 startNewGame()
 
-sensorLastValues = [mcp.read_adc(0),mcp.read_adc(1),mcp.read_adc(2), gyroSensor.get_gyro_data()]
+sensorLastValues = [gyroSensor.get_gyro_data()['y'], mcp.read_adc(0),mcp.read_adc(1),mcp.read_adc(2)]
 #potentiometer , fire, distance , gyro
 #Main Loop
 def updateSensorArray():
-	sensorLastValues[0] = mcp.read_adc(0)
-	sensorLastValues[1] = mcp.read_adc(1)
-	sensorLastValues[2] = mcp.read_adc(2)
+	sensorLastValues[0] = gyroSensor.get_gyro_data()['y']
+	sensorLastValues[1] = mcp.read_adc(0)
+	sensorLastValues[2] = mcp.read_adc(1)
+	sensorLastValues[3] = mcp.read_adc(2)
 
 while True:
 	potentiometerValue = mcp.read_adc(0)
@@ -115,9 +116,17 @@ while True:
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
 	gyro_data = gyroSensor.get_gyro_data()
-	if(abs(potentiometerValue - sensorLastValues[0]) > 300):
-		print("potentiometer changed")
+	if(abs(gyro_data['y'] - sensorLastValues[0]) > 60):
+		print("gyro y change")
 		print("last: ",sensorLastValues[0])
+		print("current", gyro_data['y'])
+		updateSensorArray()
+		ledAndSound(0)
+		sleep(1)
+		checkUserInput(0)
+	elif(abs(potentiometerValue - sensorLastValues[1]) > 300):
+		print("potentiometer changed")
+		print("last: ",sensorLastValues[1])
 		print("current: ", potentiometerValue)
 		updateSensorArray()
 		ledAndSound(1)
@@ -125,22 +134,21 @@ while True:
 		checkUserInput(1)
 	elif(fireSensorValue < 75):
 		print("fire changed")
-		print("last: ",sensorLastValues[1])
+		print("last: ",sensorLastValues[2])
 		print("current: ", fireSensorValue)
 		updateSensorArray()
 		ledAndSound(2)
 		sleep(1)
 		checkUserInput(2)
-	elif(abs(distanceSensor - sensorLastValues[2]) > 300):
+	elif(abs(distanceSensor - sensorLastValues[3]) > 300):
 		print("distaance changed")
-		print("last: ",sensorLastValues[2])
+		print("last: ",sensorLastValues[3])
 		print("current: ", distanceSensor)
 		updateSensorArray()
 		ledAndSound(3)
 		sleep(1)
 		checkUserInput(3)
 	#elif(potentiometerValue )
-	print("\t%1.2f\t%1.2f\t%1.2f" % (gyro_data['x'], gyro_data['y'], gyro_data['z']))
 
 	
 	#print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
