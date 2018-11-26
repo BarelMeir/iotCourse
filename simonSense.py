@@ -140,6 +140,7 @@ while True:
 		sleep(1)
 		checkUserInput(3)
 	#elif(potentiometerValue )
+	print("\t%1.2f\t%1.2f\t%1.2f" % (gyro_data['x'], gyro_data['y'], gyro_data['z']))
 
 	
 	#print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
@@ -155,7 +156,7 @@ while True:
 	#print ("accel_Data ", accel_data)
 	#print ("gyro_data", gyro_data)
 
-	# print("%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f" % (accel_data['x'], accel_data['x'], accel_data['y'], gyro_data['x'], gyro_data['y'], gyro_data['z']))
+	# print("\t%1.2f\t%1.2f\t%1.2f" % (gyro_data['x'], gyro_data['y'], gyro_data['z']))
 
 
 	# sleeps for one second
