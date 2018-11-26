@@ -125,7 +125,7 @@ while True:
  #        # The read_adc function will get the value of the specified channel (0-7).
  #        values[i] = mcp.read_adc(i)
  #    # Print the ADC values.
- #    #print('| {0:>4} | {1:>4} | {2:>4}'.format(*values))
+     print('| {0:>4} | {1:>4} | {2:>4}'.format(potentiometerValue, fireSensorValue,distanceSensor))
 
 	
 	#print ("accel_Data ", accel_data)
