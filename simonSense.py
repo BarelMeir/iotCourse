@@ -25,7 +25,7 @@ gyroSensor = mpu6050(0x68)
 
 #game output setup
 gpioSound = 5
-Led_Array = [4,17,27,22] #red, yellow, green, blue
+Led_Array = [12,17,27,22] #red, yellow, green, blue
 mapping = {0:(4,440), 1:(17,523),2:(27,659),3:(22,784)}
 
 #sound setup
@@ -89,8 +89,9 @@ def ledAndSound(index):
 	GPIO.output(Led_Array[index],0)
 
 def startNewGame():
-	#startShow = [0,1,2,3,3,2,1,0]
-	startShow = [0,1,1,0]
+	sleep(1)
+	startShow = [0,1,2,3,3,2,1,0]
+	#startShow = [0,1,1,0]
 	for i in startShow:
 		ledAndSound(i)
 		sleep(0.2)
