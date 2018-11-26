@@ -115,7 +115,7 @@ while True:
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
 	gyro_data = gyroSensor.get_gyro_data()
-	if(abs(potentiometerValue - sensorLastValues[0]) > 100):
+	if(abs(potentiometerValue - sensorLastValues[0]) > 300):
 		print("potentiometer changed")
 		print("last: ",sensorLastValues[0])
 		print("current: ", potentiometerValue)
@@ -123,7 +123,7 @@ while True:
 		ledAndSound(1)
 		sleep(1)
 		checkUserInput(1)
-	elif(abs(fireSensorValue - sensorLastValues[1]) > 100):
+	elif(fireSensorValue < 75):
 		print("fire changed")
 		print("last: ",sensorLastValues[1])
 		print("current: ", fireSensorValue)
