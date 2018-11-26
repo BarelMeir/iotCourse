@@ -104,6 +104,11 @@ startNewGame()
 sensorLastValues = [mcp.read_adc(0),mcp.read_adc(1),mcp.read_adc(2), gyroSensor.get_gyro_data()]
 #potentiometer , fire, distance , gyro
 #Main Loop
+def updateSensorArray():
+	sensorLastValues[0] = mcp.read_adc(0)
+	sensorLastValues[1] = mcp.read_adc(1)
+	sensorLastValues[2] = mcp.read_adc(2)
+
 while True:
 	potentiometerValue = mcp.read_adc(0)
 	fireSensorValue = mcp.read_adc(1) 
@@ -112,26 +117,26 @@ while True:
 	gyro_data = gyroSensor.get_gyro_data()
 	if(abs(potentiometerValue - sensorLastValues[0]) > 100):
 		print("potentiometer changed")
+		updateSensorArray()
 		ledAndSound(1)
 		sleep(1)
 		checkUserInput(1)
 	elif(abs(fireSensorValue - sensorLastValues[1]) > 100):
 		print("fire changed")
+		updateSensorArray()
 		ledAndSound(2)
 		sleep(1)
 		checkUserInput(2)
 	elif(abs(distanceSensor - sensorLastValues[2]) > 300):
 		print("distaance changed")
+		updateSensorArray()
 		ledAndSound(3)
 		sleep(1)
 		checkUserInput(3)
 	#elif(potentiometerValue )
 
-	sensorLastValues[0] = potentiometerValue
-	sensorLastValues[1] = fireSensorValue
-	sensorLastValues[2] = distanceSensor
+	
 	print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
-
 
 
 
