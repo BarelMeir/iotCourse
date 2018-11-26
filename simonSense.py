@@ -37,7 +37,7 @@ roundListIterator = 0
 
 #Set all the Led pins to outputs
 for index in range(len(Led_Array)):
-    GPIO.setup(Led_Array[index], GPIO.OUT)
+	GPIO.setup(Led_Array[index], GPIO.OUT)
 
 def checkUserInput(index):
 	global roundList
@@ -108,13 +108,13 @@ while True:
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
 	gyro_data = gyroSensor.get_gyro_data()
-    if(distanceSensor < 100):
-    	print("distance < 100")
-    	ledAndSound(0)
-    	sleep(1)
-    	checkUserInput(0)
+	if(distanceSensor < 100):
+		print("distance < 100")
+		ledAndSound(0)
+		sleep(1)
+		checkUserInput(0)
 
-    #elif(potentiometerValue )
+	#elif(potentiometerValue )
 
 
 
@@ -127,14 +127,14 @@ while True:
  #    # Print the ADC values.
  #    #print('| {0:>4} | {1:>4} | {2:>4}'.format(*values))
 
-    
-    #print ("accel_Data ", accel_data)
-    #print ("gyro_data", gyro_data)
+	
+	#print ("accel_Data ", accel_data)
+	#print ("gyro_data", gyro_data)
 
-    # print("%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f" % (accel_data['x'], accel_data['x'], accel_data['y'], gyro_data['x'], gyro_data['y'], gyro_data['z']))
+	# print("%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f\t%1.2f" % (accel_data['x'], accel_data['x'], accel_data['y'], gyro_data['x'], gyro_data['y'], gyro_data['z']))
 
 
-    # sleeps for one second
-    time.sleep(0.1)
+	# sleeps for one second
+	time.sleep(0.1)
 
 GPIO.cleanup()
