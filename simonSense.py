@@ -125,8 +125,6 @@ while True:
  #        values[i] = mcp.read_adc(i)
  #    # Print the ADC values.
     print('| {0:>4} | {1:>4} | {2:>4}'.format(potentiometerValue, fireSensorValue,distanceSensor))
-
-	
 	#print ("accel_Data ", accel_data)
 	#print ("gyro_data", gyro_data)
 
