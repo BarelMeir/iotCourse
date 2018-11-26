@@ -101,6 +101,8 @@ def showList():
 #
 startNewGame()
 
+sensorLastValues = [mcp.read_adc(0),mcp.read_adc(1),mcp.read_adc(2),gyro_data = gyroSensor.get_gyro_data()]
+#potentiometer , fire, distance , gyro
 #Main Loop
 while True:
 	potentiometerValue = mcp.read_adc(0)
@@ -108,11 +110,21 @@ while True:
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
 	gyro_data = gyroSensor.get_gyro_data()
-	if(distanceSensor < 100):
-		print("distance < 100")
-		ledAndSound(0)
+	if(abs(potentiometerValue - sensorLastValues[0]) > 100):
+		print("potentiometer changed")
+		ledAndSound(1)
 		sleep(1)
-		checkUserInput(0)
+		checkUserInput(1)
+	elif(abs(fireSensorValue - sensorLastValues[1]) > 100):
+		print("fire changed")
+		ledAndSound(2)
+		sleep(1)
+		checkUserInput(2)
+	elif(abs(distanceSensor - sensorLastValues[2]) > 300):
+		print("distaance changed")
+		ledAndSound(3)
+		sleep(1)
+		checkUserInput(3)
 	#elif(potentiometerValue )
 	print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
 
