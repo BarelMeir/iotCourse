@@ -117,18 +117,24 @@ while True:
 	gyro_data = gyroSensor.get_gyro_data()
 	if(abs(potentiometerValue - sensorLastValues[0]) > 100):
 		print("potentiometer changed")
+		print("last: ",sensorLastValues[0])
+		print("current: ", potentiometerValue)
 		updateSensorArray()
 		ledAndSound(1)
 		sleep(1)
 		checkUserInput(1)
 	elif(abs(fireSensorValue - sensorLastValues[1]) > 100):
 		print("fire changed")
+		print("last: ",sensorLastValues[1])
+		print("current: ", fireSensorValue)
 		updateSensorArray()
 		ledAndSound(2)
 		sleep(1)
 		checkUserInput(2)
 	elif(abs(distanceSensor - sensorLastValues[2]) > 300):
 		print("distaance changed")
+		print("last: ",sensorLastValues[2])
+		print("current: ", distanceSensor)
 		updateSensorArray()
 		ledAndSound(3)
 		sleep(1)
@@ -136,7 +142,7 @@ while True:
 	#elif(potentiometerValue )
 
 	
-	print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
+	#print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
 
 
 
