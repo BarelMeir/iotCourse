@@ -105,6 +105,7 @@ sensorLastValues = [gyroSensor.get_gyro_data()['y'], mcp.read_adc(0),mcp.read_ad
 #potentiometer , fire, distance , gyro
 #Main Loop
 def updateSensorArray():
+	global sensorLastValues
 	sensorLastValues[0] = gyroSensor.get_gyro_data()['y']
 	sensorLastValues[1] = mcp.read_adc(0)
 	sensorLastValues[2] = mcp.read_adc(1)
