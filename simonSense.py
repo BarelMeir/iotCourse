@@ -39,31 +39,6 @@ roundListIterator = 0
 for index in range(len(Led_Array)):
     GPIO.setup(Led_Array[index], GPIO.OUT)
 
-#------------ button Callback
-def distanceSensorEvent():
-	print("distance < 100")
-	ledAndSound(0)
-	sleep(1)
-	checkUserInput(0)
-
-def button1_callBack(channel):
-	print("Pushed 1")
-	ledAndSound(1)
-	sleep(1)
-	checkUserInput(1)
-
-def button2_callBack(channel):
-	print("Pushed 2")
-	ledAndSound(2)
-	sleep(1)
-	checkUserInput(2)
-
-def button3_callBack(channel):
-	print("Pushed 3")
-	ledAndSound(3)
-	sleep(1)
-	checkUserInput(3)
-
 def checkUserInput(index):
 	global roundList
 	global roundListIterator
@@ -135,7 +110,11 @@ while True:
 	gyro_data = gyroSensor.get_gyro_data()
 
     if(distanceSensor < 100):
-    	distanceSensorEvent()
+    	print("distance < 100")
+    	ledAndSound(0)
+    	sleep(1)
+    	checkUserInput(0)
+    #elif(potentiometerValue )
 
 
 
