@@ -126,6 +126,10 @@ while True:
 		sleep(1)
 		checkUserInput(3)
 	#elif(potentiometerValue )
+
+	sensorLastValues[0] = potentiometerValue
+	sensorLastValues[1] = fireSensorValue
+	sensorLastValues[2] = distanceSensor
 	print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
 
 
