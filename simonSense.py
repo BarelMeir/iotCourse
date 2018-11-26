@@ -121,12 +121,9 @@ def showList():
 		ledAndSound(i)
 		sleep(0.2)
 	print("Your move!")
-	
-#startNewGame()
-#message = input("Press enter to quit \n\n")
 
-print('| {0:>4} | {1:>4} | {2:>4} |'.format(*range(3)))
-print('-' * 57)
+#
+startNewGame()
 
 #Main Loop
 while True:
@@ -134,11 +131,11 @@ while True:
 	fireSensorValue = mcp.read_adc(1) 
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
-    gyro_data = gyroSensor.get_gyro_data()
+	gyro_data = gyroSensor.get_gyro_data()
 
     if(distanceSensor < 100):
     	distanceSensorEvent()
-    
+
 
 
 
