@@ -26,7 +26,7 @@ gyroSensor = mpu6050(0x68)
 #game output setup
 gpioSound = 5
 Led_Array = [12,17,27,22] #red, yellow, green, blue
-mapping = {0:(4,440), 1:(17,523),2:(27,659),3:(22,784)}
+mapping = {0:(12,440), 1:(17,523),2:(27,659),3:(22,784)}
 
 #sound setup
 wiringpi.wiringPiSetupGpio()
