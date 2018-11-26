@@ -101,7 +101,7 @@ def showList():
 #
 startNewGame()
 
-sensorLastValues = [mcp.read_adc(0),mcp.read_adc(1),mcp.read_adc(2),gyro_data = gyroSensor.get_gyro_data()]
+sensorLastValues = [mcp.read_adc(0),mcp.read_adc(1),mcp.read_adc(2), gyroSensor.get_gyro_data()]
 #potentiometer , fire, distance , gyro
 #Main Loop
 while True:
