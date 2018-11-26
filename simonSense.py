@@ -113,7 +113,8 @@ def updateSensorArray():
 
 while True:
 	potentiometerValue = mcp.read_adc(0)
-	fireSensorValue = mcp.read_adc(1) 
+	fireSensorValue = mcp.read_adc(1)
+	sleep(0.5) 
 	distanceSensor = mcp.read_adc(2)
 	accel_data = gyroSensor.get_accel_data()
 	gyro_data = gyroSensor.get_gyro_data()
