@@ -1,3 +1,8 @@
+#Nadav Miran - 308426048
+#Barel Meir - 308275445
+#intro video: https://drive.google.com/open?id=1nqE2BPErAsHMa3Gct4Kbu-CmCSlDnD9j
+#example video: https://drive.google.com/open?id=1j0VKnplJdXyRbj9C8SpmqMMacNQ91UJq
+
 import RPi.GPIO as GPIO
 import time
 import wiringpi
@@ -66,7 +71,6 @@ def ledAndSound(index):
 def startNewGame():
 	sleep(1)
 	startShow = [0,1,2,3,3,2,1,0]
-	#startShow = [0,1,1,0]
 	for i in startShow:
 		ledAndSound(i)
 		sleep(0.2)
@@ -76,8 +80,7 @@ def startNewGame():
 
 def endRound():
 	print("End round")
-	#endShow = [0,0,1,1,2,2,3,3]
-	endShow = [1,1,2,2]
+	endShow = [0,0,1,1,2,2,3,3]
 	for i in endShow:
 		ledAndSound(i)
 		sleep(0.2)
@@ -150,26 +153,6 @@ while True:
 		ledAndSound(3)
 		sleep(1)
 		checkUserInput(3)
-	#elif(potentiometerValue )
-
-	
-	#print('| {0: >4} | {1: >4} | {2: >4} |'.format(potentiometerValue, fireSensorValue,distanceSensor))
-
-
-
-	# # Read all the ADC channel values in a list.
- #    values = [0]*8
- #    for i in range(8):
- #        # The read_adc function will get the value of the specified channel (0-7).
- #        values[i] = mcp.read_adc(i)
- #    # Print the ADC values.
-	#print ("accel_Data ", accel_data)
-	#print ("gyro_data", gyro_data)
-
-	# print("\t%1.2f\t%1.2f\t%1.2f" % (gyro_data['x'], gyro_data['y'], gyro_data['z']))
-
-
-	# sleeps for one second
 	time.sleep(0.1)
 
 GPIO.cleanup()
