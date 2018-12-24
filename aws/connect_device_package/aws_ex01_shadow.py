@@ -32,7 +32,7 @@ cert = './MeirMiranRaspi.cert.pem'
 deviceId = 'MeirMiranRaspi'
 thingName = deviceId
 telemetry = None
-topic = 'Potentiometer/' + thingName
+topic = thingName + '/Potentiometer'
 
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
