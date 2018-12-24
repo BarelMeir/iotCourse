@@ -64,8 +64,9 @@ def customShadowCallback_Get(payload, responseStatus, token):
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
     print("++++++++GET++++++++++")
-    reportedPotentiometerValue = str(payloadDict['state']['Potentiometer']).lower()
-    print("reported value: " + reportedPotentiometerValue)
+    reportedColor = str(payloadDict['state']['reported']['Potentiometer']).lower()
+    print("reported color: " + reportedColor)
+    print("version: " + str(payloadDict["version"]))
     print("+++++++++++++++++++++++\n\n")
     
 
@@ -75,8 +76,9 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     payloadDict = json.loads(payload)
     print(payloadDict)
     print("++++++++DELTA++++++++++")
-    reportedPotentiometerValue = str(payloadDict['state']['Potentiometer']).lower()
-    print("value: " + reportedPotentiometerValue)
+    reportedColor = str(payloadDict['state']['Potentiometer']).lower()
+    print("color: " + reportedColor)
+    print("version: " + str(payloadDict["version"]))
     print("+++++++++++++++++++++++\n\n")
     newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
     deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
