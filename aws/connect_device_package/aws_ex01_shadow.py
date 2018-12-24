@@ -127,5 +127,6 @@ while True:
         'Potentiometer': potentiometerValue,
     }
 
+    print(topic)
     myMQTTClient.publish(topic,json.dumps(payload),1)
     time.sleep(2)
