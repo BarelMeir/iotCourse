@@ -5,12 +5,12 @@ import argparse
 import json
 
 # Change according to your configuration
-host = 'a3hnybagb1a8hw-ats.iot.eu-west-1.amazonaws.com'
+host = 'aotq7g4qs1zqw-ats.iot.us-east-2.amazonaws.com'
 rootCA = './root-CA.crt'
-privateKey = './IDC_Thing.private.key'
-cert = './IDC_Thing.cert.pem'
+privateKey = './MeirMiranRaspi.private.key'
+cert = './MeirMiranRaspi.cert.pem'
 topic = 'hello/world'
-deviceId = 'IDCThing'
+deviceId = 'MeirMiranRaspi'
 
 
 # Custom MQTT message callback
