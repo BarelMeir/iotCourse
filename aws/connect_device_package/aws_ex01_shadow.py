@@ -64,7 +64,7 @@ def customShadowCallback_Get(payload, responseStatus, token):
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
     print("++++++++GET++++++++++")
-    reportedPotentiometerValue = str(payloadDict['Potentiometer']).lower()
+    reportedPotentiometerValue = str(payloadDict['state']['Potentiometer']).lower()
     print("reported value: " + reportedPotentiometerValue)
     print("+++++++++++++++++++++++\n\n")
     
@@ -75,7 +75,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     payloadDict = json.loads(payload)
     print(payloadDict)
     print("++++++++DELTA++++++++++")
-    reportedPotentiometerValue = str(payloadDict['Potentiometer']).lower()
+    reportedPotentiometerValue = str(payloadDict['state']['Potentiometer']).lower()
     print("value: " + reportedPotentiometerValue)
     print("+++++++++++++++++++++++\n\n")
     newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
@@ -122,6 +122,7 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 
 time.sleep(2)
 while True:
+    print("loop start")
     potentiometerValue = mcp.read_adc(0)
     payload = {
         'Potentiometer': potentiometerValue,
