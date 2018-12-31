@@ -139,7 +139,7 @@ myMQTTClient.configureDrainingFrequency(2)  # Draining: 2 Hz
 myMQTTClient.configureConnectDisconnectTimeout(10)  # 10 sec
 myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 # Loop forever and wait for joystic
-
+sleep(3)
 while True:
 
     potentiometerValue = mcp.read_adc(0)
