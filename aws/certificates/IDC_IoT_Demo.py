@@ -7,8 +7,8 @@ import json
 # Change according to your configuration
 host = 'a1rpddawph4ysg-ats.iot.eu-west-1.amazonaws.com'
 rootCA = './root-CA.crt'
-privateKey = './56075c5af2-private.pem'
-cert = './56075c5af2-certificate.pem'
+privateKey = './56075c5af2-private.pem.key'
+cert = './56075c5af2-certificate.pem.crt'
 topic = 'hello/world'
 deviceId = 'Meir-Miran'
 
