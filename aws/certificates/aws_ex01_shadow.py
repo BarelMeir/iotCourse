@@ -131,9 +131,7 @@ myMQTTClient.configureDrainingFrequency(2)  # Draining: 2 Hz
 myMQTTClient.configureConnectDisconnectTimeout(10)  # 10 sec
 myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 # Loop forever and wait for joystic
-# Use the sensehat module
 
-time.sleep(2)
 while True:
     potentiometerValue = mcp.read_adc(0)
     payload = {
