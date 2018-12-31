@@ -16,7 +16,7 @@ deviceId = 'Meir-Miran'
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
     print("Received a new message: ")
-    print(messaeg.payload)
+    print(message.payload)
     print("from topic: ")
     print(message.topic)
     print("--------------\n\n")
