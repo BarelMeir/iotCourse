@@ -73,15 +73,17 @@ def customShadowCallback_Get(payload, responseStatus, token):
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
-    if 'interval' in payloadDict['state']:
-        interval = payloadDict['state']['interval']
-
     if 'delta' in payloadDict['state']:
         newPayload = {
         "state": payloadDict['state']['delta']
         }
         customShadowCallback_Delta(json.dumps(newPayload), None, None)
         return
+
+    if 'interval' in payloadDict['state']['desired']:
+        interval = payloadDict['state']['desired']['interval']
+    if 'lightState' in payloadDict['state']['desired']:
+    	GPIO.output(Led_Array[index], payloadDict['state']['desired']['lightState'])
     
 
 def customShadowCallback_Delta(payload, responseStatus, token):
