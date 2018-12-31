@@ -67,7 +67,8 @@ def customShadowCallback_Get(payload, responseStatus, token):
     payloadDict = json.loads(payload)
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
-
+    print ("+++ DELTA IS +++")
+    print (payloadDict)
     if 'delta' in payloadDict['state']:
         newPayload = {
         "state": payloadDict['state']['delta']
