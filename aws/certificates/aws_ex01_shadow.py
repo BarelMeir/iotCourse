@@ -82,7 +82,6 @@ def customShadowCallback_Get(payload, responseStatus, token):
         }
         customShadowCallback_Delta(json.dumps(newPayload), None, None)
         return
-    reportedPotential = str(payloadDict['state']['reported']['Potentiometer']).lower()
     
 
 def customShadowCallback_Delta(payload, responseStatus, token):
@@ -95,7 +94,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
 
     if 'lightState' in payloadDict['state']:
     	GPIO.output(Led_Array[index], payloadDict['state']['lightState'])
-    	
+
     newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
     deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
 
