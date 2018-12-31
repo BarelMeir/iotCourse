@@ -87,7 +87,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     # in both Py2.x and Py3.x
     print ("HELLO WORLD!!!")
     payloadDict = json.loads(payload)
-    print(payloadDict)
+    # print(str(payloadDict))
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
     reportedColor = str(payloadDict['state']['Potentiometer']).lower()
