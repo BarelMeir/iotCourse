@@ -64,7 +64,7 @@ def customShadowCallback_Get(payload, responseStatus, token):
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
-
+    print ("customShadowCallback_GETTTT")
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
 
