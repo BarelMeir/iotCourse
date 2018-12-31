@@ -94,7 +94,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     # print(str(payloadDict))
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
-    reportedColor = str(payloadDict['state']['Potentiometer']).lower()
+    # reportedColor = str(payloadDict['state']['Potentiometer']).lower()
     newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
     deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
 
