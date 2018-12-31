@@ -1,3 +1,6 @@
+#Nadav Miran - 308426048
+#Barel Meir - 308275445
+
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
 import logging
 import time
@@ -22,6 +25,12 @@ MISO = 23
 MOSI = 24
 CS = 25
 mcp = Adafruit_MCP3008.MCP3008(clk = CLK, cs = CS, miso = MISO, mosi = MOSI)
+
+#Led output setup gpio & off
+gpioLed = 13
+GPIO.setup(gpioLed, GPIO.OUT)
+GPIO.output(gpioLed, 0)
+
 
 
 # Change according to your configuration
@@ -63,14 +72,9 @@ def customShadowCallback_Get(payload, responseStatus, token):
     global interval
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
-    print ("customShadowCallback_GETTTT")
     payloadDict = json.loads(payload)
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
-    print ("+++ DELTA IS +++")
-    print (payloadDict['state'])
-    print ("+++ DELIMITER +++")
-    print (payloadDict['state']['delta'])
 
     if 'delta' in payloadDict['state']:
         newPayload = {
@@ -78,23 +82,20 @@ def customShadowCallback_Get(payload, responseStatus, token):
         }
         customShadowCallback_Delta(json.dumps(newPayload), None, None)
         return
-    print("++++++++GET++++++++++")
     reportedPotential = str(payloadDict['state']['reported']['Potentiometer']).lower()
-    print("reported potential: " + reportedPotential)
-    # print("version: " + str(payloadDict["version"]))
-    print("+++++++++++++++++++++++\n\n")
     
 
 def customShadowCallback_Delta(payload, responseStatus, token):
     global interval
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
-    print ("HELLO WORLD!!!")
     payloadDict = json.loads(payload)
-    # print(str(payloadDict))
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
-    # reportedColor = str(payloadDict['state']['Potentiometer']).lower()
+
+    if 'lightState' in payloadDict['state']:
+    	GPIO.output(Led_Array[index], payloadDict['state']['lightState'])
+    	
     newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
     deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
 
