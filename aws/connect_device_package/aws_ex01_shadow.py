@@ -25,14 +25,15 @@ mcp = Adafruit_MCP3008.MCP3008(clk = CLK, cs = CS, miso = MISO, mosi = MOSI)
 
 
 # Change according to your configuration
-host = 'aotq7g4qs1zqw-ats.iot.us-east-2.amazonaws.com'
+host = 'a1rpddawph4ysg-ats.iot.eu-west-1.amazonaws.com'
 rootCA = './root-CA.crt'
-privateKey = './MeirMiranRaspi.private.key'
-cert = './MeirMiranRaspi.cert.pem'
-deviceId = 'MeirMiranRaspi'
+privateKey = './56075c5af2-private.pem.key'
+cert = './56075c5af2-certificate.pem.crt'
+deviceId = 'Meir-Miran'
 thingName = deviceId
 telemetry = None
 topic = thingName + '/Potentiometer'
+interval = 1
 
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
@@ -59,27 +60,36 @@ def customShadowCallback_Update(payload, responseStatus, token):
 
 
 def customShadowCallback_Get(payload, responseStatus, token):
-    global telemetry
+    global interval
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
+
+    if 'interval' in payloadDict['state']:
+        interval = payloadDict['state']['interval']
+
+    if 'delta' in payloadDict['state']:
+        newPayload = {
+        "state": payloadDict['state']['delta']
+        }
+        customShadowCallback_Delta(newPayload, None, None)
+        return
     print("++++++++GET++++++++++")
-    reportedColor = str(payloadDict['state']['reported']['Potentiometer']).lower()
-    print("reported color: " + reportedColor)
-    print("version: " + str(payloadDict["version"]))
+    reportedPotential = str(payloadDict['state']['reported']['Potentiometer']).lower()
+    print("reported potential: " + reportedPotential)
+    # print("version: " + str(payloadDict["version"]))
     print("+++++++++++++++++++++++\n\n")
     
 
 def customShadowCallback_Delta(payload, responseStatus, token):
+    global interval
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
     print(payloadDict)
-    print("++++++++DELTA++++++++++")
+    if 'interval' in payloadDict['state']:
+        interval = payloadDict['state']['interval']
     reportedColor = str(payloadDict['state']['Potentiometer']).lower()
-    print("color: " + reportedColor)
-    print("version: " + str(payloadDict["version"]))
-    print("+++++++++++++++++++++++\n\n")
     newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
     deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
 
@@ -124,12 +134,15 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 
 time.sleep(2)
 while True:
-    print("loop start")
     potentiometerValue = mcp.read_adc(0)
     payload = {
         'Potentiometer': potentiometerValue,
+        'interval' : interval
     }
+    print("+++ potentiometer Data is +++")
+    print (payload)
+    print("+++ End of Data +++")
 
     print(topic)
     myMQTTClient.publish(topic,json.dumps(payload),1)
-    time.sleep(2)
+    time.sleep(interval)
