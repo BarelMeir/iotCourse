@@ -76,7 +76,7 @@ def customShadowCallback_Get(payload, responseStatus, token):
         newPayload = {
         "state": payloadDict['state']['delta']
         }
-        customShadowCallback_Delta(newPayload, None, None)
+        customShadowCallback_Delta(json.dumps(newPayload), None, None)
         return
     print("++++++++GET++++++++++")
     reportedPotential = str(payloadDict['state']['reported']['Potentiometer']).lower()
