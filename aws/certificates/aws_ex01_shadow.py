@@ -133,7 +133,7 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 # Loop forever and wait for joystic
 
 while True:
-	global interval
+
     potentiometerValue = mcp.read_adc(0)
     payload = {
         'Potentiometer': potentiometerValue,
