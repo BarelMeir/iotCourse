@@ -63,8 +63,8 @@ def customShadowCallback_Get(payload, responseStatus, token):
     global interval
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
-    payloadDict = json.loads(payload)
     print ("customShadowCallback_GETTTT")
+    payloadDict = json.loads(payload)
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
 
@@ -85,8 +85,8 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     global interval
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
-    payloadDict = json.loads(payload)
     print ("HELLO WORLD!!!")
+    payloadDict = json.loads(payload)
     print(payloadDict)
     if 'interval' in payloadDict['state']:
         interval = payloadDict['state']['interval']
