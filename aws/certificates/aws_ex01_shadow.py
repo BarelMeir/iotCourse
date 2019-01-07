@@ -1,5 +1,6 @@
 #Nadav Miran - 308426048
 #Barel Meir - 308275445
+#video example link: https://drive.google.com/open?id=1MrjyTI_DmbOzxyab4wFCNCQU_2TiIQxw
 
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
 import logging
