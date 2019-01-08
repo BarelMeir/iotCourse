@@ -9,8 +9,8 @@ import json
 # Change according to your configuration
 host = 'a1rpddawph4ysg-ats.iot.eu-west-1.amazonaws.com'
 rootCA = './root-CA.crt'
-privateKey = './certificates/56075c5af2-private.pem.key'
-cert = './certificates/56075c5af2-certificate.pem.crt'
+privateKey = './56075c5af2-private.pem.key'
+cert = './56075c5af2-certificate.pem.crt'
 thingName = 'Meir-Miran'
 deviceId = thingName
 telemetry = None
