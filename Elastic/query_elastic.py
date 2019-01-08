@@ -25,5 +25,5 @@ query = {
         }
     }
 }
-result = es.search(index='pc_telemetry', body=query)
+result = es.search(index='meir_miran_data', body=query)
 print(json.dumps(result))
