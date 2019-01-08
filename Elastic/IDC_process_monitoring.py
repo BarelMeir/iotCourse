@@ -146,7 +146,8 @@ while True:
         'num CPUs': psutil.cpu_count(),
         'virtual Memory utilization': psutil.virtual_memory()[2],
         'disk used': psutil.disk_usage('/')[3],
-        'process list': plist
+        'process list': plist,
+        'amount of processes' : len(plist)
     }
     print(topic)
     print(json.dumps(payload))
