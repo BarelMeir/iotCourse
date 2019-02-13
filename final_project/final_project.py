@@ -34,9 +34,9 @@ sensor = Adafruit_DHT.DHT22
 
 # Change according to your configuration
 host = 'a1rpddawph4ysg-ats.iot.eu-west-1.amazonaws.com'
-rootCA = './root-CA.crt'
-privateKey = './56075c5af2-private.pem.key'
-cert = './56075c5af2-certificate.pem.crt'
+rootCA = '../aws/certificates/root-CA.crt'
+privateKey = '../aws/certificates/56075c5af2-private.pem.key'
+cert = '../aws/certificates/56075c5af2-certificate.pem.crt'
 deviceId = 'Meir-Miran'
 thingName = deviceId
 telemetry = None
