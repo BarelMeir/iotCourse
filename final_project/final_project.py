@@ -27,11 +27,9 @@ MOSI = 24
 CS = 25
 mcp = Adafruit_MCP3008.MCP3008(clk = CLK, cs = CS, miso = MISO, mosi = MOSI)
 
-#Led output setup gpio & off
-gpioLed = 13
-GPIO.setup(gpioLed, GPIO.OUT)
-GPIO.output(gpioLed, 0)
-
+#Humidity sensor setup
+humidityPin = 12
+sensor = Adafruit_DHT.DHT22
 
 
 # Change according to your configuration
@@ -42,8 +40,10 @@ cert = './56075c5af2-certificate.pem.crt'
 deviceId = 'Meir-Miran'
 thingName = deviceId
 telemetry = None
-topic = thingName + '/Potentiometer'
-interval = 1
+topic = 'barel_meir/telemetry'
+interval = 3
+
+
 
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
@@ -143,15 +143,17 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 sleep(3)
 while True:
 
-    potentiometerValue = mcp.read_adc(0)
+    humidity, temperature = Adafruit_DHT.read_retry(sensor,pin)
+    LightValue = mcp.read_adc(0)
     payload = {
-        'Potentiometer': potentiometerValue,
-        'interval' : interval
+        'Light': LightValue,
+        'humidity' : humidity,
+        'temperature' : temperature
     }
-    print("+++ potentiometer Data is +++")
+    print("+++ Sensors Data is +++")
     print (payload)
     print("+++ End of Data +++")
 
     print(topic)
-    myMQTTClient.publish(topic,json.dumps(payload),1)
+    # myMQTTClient.publish(topic,json.dumps(payload),1)
     time.sleep(interval)
