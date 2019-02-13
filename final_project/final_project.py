@@ -140,8 +140,8 @@ while True:
     LightValue = mcp.read_adc(0)
     payload = {
         'Light': LightValue,
-        'humidity' : humidity,
-        'temperature' : temperature
+        'Humidity' : humidity,
+        'Temperature' : temperature
     }
     print("+++ Sensors Data is +++")
     print (payload)
