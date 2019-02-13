@@ -85,7 +85,7 @@ def customShadowCallback_Get(payload, responseStatus, token):
     if 'interval' in payloadDict['state']['desired']:
         interval = payloadDict['state']['desired']['interval']
     if 'lightState' in payloadDict['state']['desired']:
-    	GPIO.output(gpioLed, payloadDict['state']['desired']['lightState'])
+    #	GPIO.output(gpioLed, payloadDict['state']['desired']['lightState'])
     
 
 def customShadowCallback_Delta(payload, responseStatus, token):
