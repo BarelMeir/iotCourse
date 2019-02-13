@@ -143,7 +143,7 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 sleep(3)
 while True:
 
-    humidity, temperature = Adafruit_DHT.read_retry(sensor,pin)
+    humidity, temperature = Adafruit_DHT.read_retry(sensor,humidityPin)
     LightValue = mcp.read_adc(0)
     payload = {
         'Light': LightValue,
