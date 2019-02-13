@@ -71,7 +71,6 @@ def customShadowCallback_Update(payload, responseStatus, token):
 
 def customShadowCallback_Get(payload, responseStatus, token):
     global interval
-    global gpioLed
     # payload is a JSON string ready to be parsed using json.loads(...)
     # in both Py2.x and Py3.x
     payloadDict = json.loads(payload)
@@ -84,25 +83,18 @@ def customShadowCallback_Get(payload, responseStatus, token):
 
     if 'interval' in payloadDict['state']['desired']:
         interval = payloadDict['state']['desired']['interval']
-    if 'lightState' in payloadDict['state']['desired']:
-    #	GPIO.output(gpioLed, payloadDict['state']['desired']['lightState'])
-    
 
 def customShadowCallback_Delta(payload, responseStatus, token):
-    return
-    # global interval
-    # global gpioLed
-    # # payload is a JSON string ready to be parsed using json.loads(...)
-    # # in both Py2.x and Py3.x
-    # payloadDict = json.loads(payload)
-    # if 'interval' in payloadDict['state']:
-    #     interval = payloadDict['state']['interval']
+    global interval
+    # payload is a JSON string ready to be parsed using json.loads(...)
+    # in both Py2.x and Py3.x
+    payloadDict = json.loads(payload)
+    if 'interval' in payloadDict['state']:
+        interval = payloadDict['state']['interval']
 
-    # if 'lightState' in payloadDict['state']:
-    # 	GPIO.output(gpioLed, payloadDict['state']['lightState'])
 
-    # newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
-    # deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
+    newPayload = '{"state":{"reported":' + json.dumps(payloadDict['state']) + '}}'
+    deviceShadowHandler.shadowUpdate(newPayload, customShadowCallback_Update, 5)
 
 # Configure logging
 logger = logging.getLogger("AWSIoTPythonSDK.core")
