@@ -149,4 +149,4 @@ while True:
 
     print(topic)
     # myMQTTClient.publish(topic,json.dumps(payload),1)
-    time.sleep(interval)
+    time.sleep(2)
