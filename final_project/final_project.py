@@ -148,5 +148,5 @@ while True:
     print("+++ End of Data +++")
 
     print(topic)
-    # myMQTTClient.publish(topic,json.dumps(payload),1)
+    myMQTTClient.publish(topic,json.dumps(payload),1)
     time.sleep(2)
