@@ -89,6 +89,7 @@ def customShadowCallback_Get(payload, responseStatus, token):
     
 
 def customShadowCallback_Delta(payload, responseStatus, token):
+    return
     # global interval
     # global gpioLed
     # # payload is a JSON string ready to be parsed using json.loads(...)
